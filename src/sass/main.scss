@@ -1,0 +1,9 @@
+// abstracts: 실제 스타일은 없고, 그저 다른 폴더에 정의된 스타일을 도와는 역할 (색상, 폰트사이즈 등)
+@import "abstracts/variables";
+
+@import "base/font";
+@import "base/reset";
+
+@import "layout/header";
+
+
