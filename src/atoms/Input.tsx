@@ -1,5 +1,5 @@
 import React from "react";
-import "../sass/atoms/_input.scss"
+import "../sass/atoms/_input.scss";
 
 interface InputProps {
   id?: string;
@@ -20,15 +20,16 @@ const Input = ({
   value,
   maxLength,
   required,
-  onChange
+  onChange,
 }: InputProps) => {
-
   return (
     <>
-      <label className='input-label' htmlFor={id ?? id}>{label ?? label}</label>
+      <label className="ir" htmlFor={id ?? id}>
+        {label ?? label}
+      </label>
       <input
-        className='common-input'
-        autoComplete='off'
+        className="common-input"
+        autoComplete="off"
         id={id ?? id}
         type={type ?? type}
         placeholder={placeholder ?? placeholder}
