@@ -1,30 +1,20 @@
 @import '../abstracts/variables';
 
 .wrapper {
-  width: 390px;
-  height: 844px;
-  margin: 0 auto;
-  padding-top: 230px;
-  background-image: url(../../../public/assets/images/background.png);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    animation: 1.5s ease-in-out ;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 300px;
   .title {
     color: $wh-color;
     font-family: 'PyeongChangPeace-Bold';
     font-size: 48px;
-    margin-bottom: 30px;
+    margin-bottom: 36px;
   }
   .loadingMsg {
     color: $wh-color;
     font-family: 'PyeongChang-Regular';
     font-size: 14px;
-    margin-top: 30px;
+    margin-top: 36px;
   }
 }

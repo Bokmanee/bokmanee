@@ -1,0 +1,13 @@
+.all-layout {
+  width: 390px;
+  height: 100vh;
+  margin: 0 auto;
+  background-image: url(../../../public/assets/images/background.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  @media screen and (min-width: 768px) and (max-width: 1024px){
+    height: 844px;
+  }
+}
+
