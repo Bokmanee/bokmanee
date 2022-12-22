@@ -13,7 +13,7 @@ const Splash = () => {
   }, [])
 
   return (
-    <div className='wrapper'>
+    <div className='splash-wrapper'>
       <h1 className='title'>2023</h1>
       <BarLoader
         width={200}
