@@ -1,0 +1,21 @@
+@import '../abstracts/variables';
+
+.input-label {
+  font-family: 'PyeongChang-Regular';
+  font-size: 14px;
+  color: $wh-color;
+}
+
+.common-input {
+  display: block;
+  width: 266px;
+  margin-bottom: 24px;
+  padding: 6px 0;
+  font-family: 'PyeongChang-Regular';
+  font-size: 14px;
+  color: $wh-color;
+  border-bottom: 1px solid $wh-color;
+  &::placeholder {
+    color: $wh-color;
+  }
+}
