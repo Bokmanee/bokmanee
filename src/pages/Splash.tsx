@@ -14,16 +14,14 @@ const Splash = () => {
 
   return (
     <div className='wrapper'>
-      <div>
-        <h1 className='title'>2023</h1>
-        <BarLoader
-          width={200}
-          height={14}
-          color={'#ffffff'}
-          speedMultiplier={0.6}
-        />
-        <p className='loadingMsg'>LOADING . . .</p>
-      </div>
+      <h1 className='title'>2023</h1>
+      <BarLoader
+        width={200}
+        height={14}
+        color={'#ffffff'}
+        speedMultiplier={0.6}
+      />
+      <p className='loadingMsg'>LOADING . . .</p>
     </div>
   );
 };
