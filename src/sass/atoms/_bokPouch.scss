@@ -1,0 +1,49 @@
+@import '../abstracts/variables';
+
+.bokPouch {
+    font-family: 'Nanum JungHagSaeng';
+    font-size: 20px;
+    color: $bk-color;
+}
+
+@mixin pouch-angle($angle) {
+    transform: rotate($angle)
+}
+
+.pouch-mainusAngle {
+    @include pouch-angle(-10deg)
+}
+
+.pouch-plusAngle {
+    @include pouch-angle(10deg)
+}
+
+@mixin pouch-color($color) {
+    width: 65px;
+    height: 80px;
+    margin-bottom: 7px;
+    background-image: url("../../../public/assets/images/icon-pouch-" + $color + ".svg");
+    background-repeat: no-repeat;
+}
+
+.pouch-red {
+    @include pouch-color(red)
+}
+
+.pouch-yellow {
+    @include pouch-color(yellow)
+}
+
+.pouch-green {
+    @include pouch-color(green)
+}
+
+.pouch-blue {
+    @include pouch-color(blue)
+}
+
+.pouch-purple {
+    @include pouch-color(purple)
+}
+
+
