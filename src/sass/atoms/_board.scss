@@ -1,0 +1,20 @@
+@import '../abstracts/variables';
+
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 33px;
+  .board-title {
+    font-family: 'PyeongChangPeace-Light';
+    font-size: 20px;
+    line-height: 36px;
+    text-align: center;
+    margin-top: 130px;
+    color: $wh-color;
+    span {
+      font-size: 30px;
+      margin: 0 10px;
+    }
+  }
+}
