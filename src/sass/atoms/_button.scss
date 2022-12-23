@@ -1,0 +1,37 @@
+@import '../abstracts/variables';
+
+@mixin btn {
+    width: 267px;
+    height: 48px;
+    border-radius: 10px;
+    font-family: 'PyeongChang';
+    font-size: 14px;
+    color: #191919;
+}
+
+.btn-wh {
+    @include btn;
+    background-color: $wh-color;
+}
+
+.btn-sky {
+    @include btn;
+    background-color: $sky-color;
+}
+
+.btn-kakao {
+    @include btn;
+    background-color: #FEE500;
+    background-image: url("../../../public/assets/images/icon-kakako.svg");
+    background-repeat: no-repeat;
+    background-position: 19px 50%;
+}
+
+.btn-github {
+    @include btn;
+    background-color: #191919;
+    color: $wh-color;
+    background-image: url("../../../public/assets/images//icon-github.svg");
+    background-repeat: no-repeat;
+    background-position: 19px 50%;
+}
