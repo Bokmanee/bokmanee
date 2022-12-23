@@ -1,0 +1,35 @@
+.wrap {
+  margin: 0 auto;
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: 1.5s ease-in-out ;
+    .txt-intro{
+      font-family: 'PyeongChang Peace';
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 11px;
+    }
+    .txt-title{
+      font-family: 'PyeongChang Peace';
+      font-weight: 300;
+      font-size: 36px;
+      color: #fff;
+      margin-bottom: 45px;
+    }
+    .link-passfind{
+   font-family: 'PyeongChang';
+      font-size: 12px;
+      color: #fff;
+      text-align: center;
+      margin: 8px 0 22px;
+    }
+    .list-join{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
