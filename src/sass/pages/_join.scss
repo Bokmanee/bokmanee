@@ -1,0 +1,37 @@
+@import '../abstracts/variables';
+
+.join-wrap {
+  display: flex;
+  flex-direction: column;
+  color: $wh-color;
+  font-family: 'PyeongChangPeace-Light';
+  text-align: center;
+  // font-size: ;
+  .txt-happy{
+    padding-bottom: 15px;
+  }
+  .txt-title {
+    font-size: 36px;
+    padding-bottom: 25px;
+  }
+  .txt-warning {
+    font-size: 14px;
+    padding-bottom: 36px;
+  }
+  input {
+    font-family: 'PyeongChang-Bold';
+    width: 266px;
+    font-size: 14px;
+    border-bottom: 1px solid $wh-color;
+    padding-bottom: 9px;
+    margin-bottom: 24px;
+    color: #E0E0E0;
+    &::placeholder {
+      color: #E0E0E0;
+    }
+  }
+  button {
+    font-family: 'PyeongChang-Regular';
+  }
+
+}
