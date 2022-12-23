@@ -1,4 +1,11 @@
 @import '../abstracts/variables';
+@keyframes Loading{
+  from {
+    width: 0;
+  } to {
+    width: 100%;
+  }
+}
 
 .splash-wrapper {
   display: flex;
@@ -10,6 +17,23 @@
     font-family: 'PyeongChangPeace-Bold';
     font-size: 48px;
     margin-bottom: 36px;
+  }
+  .loading {
+    position: relative;
+    width: 266px;
+    height: 16px;
+    background-color: #ffffff3f;
+    border-radius: 50px;
+    .loading-bar {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-color: $wh-color;
+      border-radius: 50px;
+      animation: Loading 1.5s linear;
+    }
   }
   .loadingMsg {
     color: $wh-color;
