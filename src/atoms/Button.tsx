@@ -1,6 +1,6 @@
 import React from "react";
 
-export interface BtnProps {
+interface BtnProps {
   type?: "submit" | "button";
   onClick?: () => void;
   children?: React.ReactNode;

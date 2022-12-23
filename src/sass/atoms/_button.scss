@@ -6,7 +6,7 @@
     border-radius: 10px;
     font-family: 'PyeongChang';
     font-size: 14px;
-    color: #191919;
+    color: $bk-color;
 }
 
 .btn-wh {
@@ -29,7 +29,7 @@
 
 .btn-github {
     @include btn;
-    background-color: #191919;
+    background-color: $bk-color;
     color: $wh-color;
     background-image: url("../../../public/assets/images//icon-github.svg");
     background-repeat: no-repeat;
