@@ -1,7 +1,65 @@
-import React from "react";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Board from '../atoms/Board';
+import { WhButton } from '../atoms/Button';
+import Input from '../atoms/Input';
+import "../sass/pages/_chooseBok.scss";
 
 const ChooseBok = () => {
-  return <div>ChooseBok</div>;
-};
+  const navigate = useNavigate();
+  const linkToRegisterMessage = () => {
+    navigate('/registerMessage')
+  }
+  return (
+    <>
+      <Board
+        username='웨빈'
+        message1='님에게'
+        message2='새해 응원 메시지를 남겨보세요 !' />
+      <div className='pouch-allwrap'>
+        <p className='pouch-allwrap-text'>* 수정이 어려우니 신중히 입력해주세요</p>
+        <Input
+          id='nickname-input'
+          label='닉네임'
+          type='text'
+          placeholder='닉네임'
+          required={true} />
+        <div className='pouch-wrap'>
+          <div>
+            <input id='pouch-red' type="radio" name='pouch' />
+            <label htmlFor="pouch-red">
+              <img src="assets/images/icon-pouch-red.svg" alt="복주머니" />
+            </label>
+          </div>
+          <div>
+            <input id='pouch-yellow' type="radio" name='pouch' />
+            <label htmlFor="pouch-yellow">
+              <img src="assets/images/icon-pouch-yellow.svg" alt="복주머니" />
+            </label>
+          </div>
+          <div>
+            <input id='pouch-green' type="radio" name='pouch' />
+            <label htmlFor="pouch-green">
+              <img src="assets/images/icon-pouch-green.svg" alt="복주머니" />
+            </label>
+          </div>
+          <div>
+            <input id='pouch-blue' type="radio" name='pouch' />
+            <label htmlFor="pouch-blue">
+              <img src="assets/images/icon-pouch-blue.svg" alt="복주머니" />
+            </label>
+          </div>
+          <div>
+            <input id='pouch-purple' type="radio" name='pouch' />
+            <label htmlFor="pouch-purple">
+              <img src="assets/images/icon-pouch-purple.svg" alt="복주머니" />
+            </label>
+          </div>
+        </div>
+        <WhButton type='button' children='편지 쓰기' onClick={linkToRegisterMessage} />
+      </div>
+    </>
+  )
+}
 
-export default ChooseBok;
+export default ChooseBok
