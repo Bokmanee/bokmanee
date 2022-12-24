@@ -1,0 +1,80 @@
+@import "../abstracts/variables";
+
+.tutorial-box {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 336px;
+    height: 709px;
+    padding: 45px 35px 35px;
+    background: $wh-color;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    color: $bk-color;
+
+    p {
+        text-align: center;
+        padding-bottom: 27px;
+        font-family: 'PyeongChang Peace';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 32px;
+        line-height: 43px;
+    }
+
+    pre {
+        height: 480px;
+        font-family: 'PyeongChang';
+        font-size: 14px;
+        line-height: 40px;
+        background:repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 39px, $tutorialLine-color 0 40px);
+    }
+
+    button {
+        width: 22px;
+        height: 28px;
+        margin-top: 52px;
+        background-image: url("../../../public/assets/images/icon-close.svg");
+        background-repeat: no-repeat; 
+    }
+
+    .bokmanee1 {
+        width: 65px;
+        height: 80px;
+        position: absolute;
+        left: 294px;
+        top: 306.26px;
+        background-image: url("../../../public/assets/images/icon-pouch-red.svg");
+        background-repeat: no-repeat; 
+        transform: rotate(-30.78deg);
+    }
+
+    .bokmanee2 {
+        width: 65px;
+        height: 80px;
+        position: absolute;
+        left: -39px;
+        top: 536px;
+        background-image: url("../../../public/assets/images/icon-pouch-red.svg");
+        background-repeat: no-repeat; 
+        transform: matrix(-0.99, -0.17, -0.17, 0.99, 0, 0);
+    }
+
+    .bokmanee3 {
+        position: absolute;
+        width: 164px;
+        height: 259px;
+        left: 199px;
+        top: 515px;
+        background-image: url("../../../public/assets/images/icon-rabbit-face.svg");
+        background-repeat: no-repeat;
+    }
+
+    .team-name {
+        position: absolute;
+        left: 141px;
+        top: 662px;
+        font-family: 'PyeongChang';
+        font-size: 10px;
+        color: #DBDBDB;
+    }
+}
