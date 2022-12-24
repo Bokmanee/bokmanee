@@ -8,19 +8,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .bokpouch-btn, .home-btn {
-    display: block;
-    width: 266px;
-    padding: 15px 0;
-    border-radius: 10px;
-    color: $bk-color;
-    font-family: 'PyeongChang-Regular';
-  }
-  .bokpouch-btn {
-    background-color: $sky-color;
-    margin-bottom: 15px;
-  }
-  .home-btn {
-    background-color: $wh-color;
-  }
+  gap: 16px;
 }

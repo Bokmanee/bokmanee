@@ -1,0 +1,62 @@
+@import "../abstracts/variables";
+
+.pouch-allwrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .pouch-allwrap-text {
+    font-family: 'PyeongChang-Regular';
+    font-size: 14px;
+    color: $wh-color;
+    margin: 50px 0;
+  }
+  .pouch-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 52px;
+    div {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      margin: 50px 22px 0px;
+      input[type="radio"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        border: 0;
+      }
+      input[type="radio"] + label:before {
+        content: '';
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 12px;
+        height: 12px;
+        text-align: center;
+        background-color: #ffffff57;
+        border-radius: 100%;
+      }
+      input[type="radio"]:checked + label:before {
+        background-color: #ffffff57;
+      }
+      input[type="radio"]:checked + label:after {
+        content: '';
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background: #2f81ff;
+        border-radius: 100%;
+      }
+    }
+  }
+}
