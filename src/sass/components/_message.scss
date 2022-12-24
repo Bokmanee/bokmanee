@@ -14,6 +14,9 @@
     max-height: 709px;
     padding: 35px 35px 60px;
 
+    div {
+        min-height: 280px;
+    }
     @at-root .message-line {
         margin-bottom: 33px;
         background:repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0 39px, $letterLine-color 0 40px);
@@ -35,8 +38,8 @@
         width: 23px;
         height: 70px;
         position: absolute;
-        right: 35px;
-        bottom: -200px;
+        left: 278px;
+        bottom: 0px;
         background-image: url("../../../public/assets/images/icon-close-brown.svg");
         background-repeat: no-repeat; 
     }
