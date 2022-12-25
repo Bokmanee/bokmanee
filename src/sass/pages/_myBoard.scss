@@ -1,0 +1,29 @@
+.wrap-myboard{
+display: flex;
+flex-direction: column;
+align-items: center;
+    .grid-bok{
+        height: 410px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 28px;
+        margin: 45px 0 30px;
+        padding: 0 20px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        /* 스크롤바 설정 */
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  /* 스크롤바 막대 설정 */
+  &::-webkit-scrollbar-thumb {
+    height: 17%;
+    background-color: #c3d2ff;
+    border-radius: 10px;
+  }
+  /* 스크롤바 뒷 배경 설정 */
+  &::-webkit-scrollbar-track {
+    background-color: #b5b5b5;
+  }
+    }
+}
