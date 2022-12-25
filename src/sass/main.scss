@@ -3,16 +3,20 @@
 
 @import "atoms/input";
 @import "atoms/button";
-@import "atoms/bokPouch";
+@import "atoms/board";
 
 @import "base/font";
 @import "base/reset";
 
 @import "layout/allLayout";
 @import "layout/header";
-@import "layout/flexLayout";
 
 @import "components/message";
 
-@import "pages/splash"
+@import "pages/splash";
+@import "pages/tutorial";
+@import "pages/chooseBok";
+@import "pages/userBoard";
+@import "pages/findPassword";
 
+@import "components/message";
