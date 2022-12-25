@@ -1,6 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Backspace from '../atoms/Backspace';
+import BokClick from '../atoms/BokClick';
 import Board from '../atoms/Board';
+import Header from '../components/Header';
 import { WhButton } from '../atoms/Button';
 import Input from '../atoms/Input';
 import "../sass/pages/_chooseBok.scss";
@@ -12,12 +15,16 @@ const ChooseBok = () => {
   }
   return (
     <>
+      <Header
+        leftChild={<Backspace />}
+        rightChild={<BokClick />} />
       <Board
         username='웨빈'
         message1='님에게'
-        message2='새해 응원 메시지를 남겨보세요 !' />
+        message2='새해 응원 메시지를 남겨보세요 !'
+        children='* 수정이 어려우니 신중히 입력해주세요'
+      />
       <div className='pouch-allwrap'>
-        <p className='pouch-allwrap-text'>* 수정이 어려우니 신중히 입력해주세요</p>
         <Input
           id='nickname-input'
           label='닉네임'
