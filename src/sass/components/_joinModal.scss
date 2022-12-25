@@ -1,0 +1,30 @@
+.join-modal-area {
+  position: fixed;
+  margin: 0 auto;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 390px;
+  height: 100%;
+  background-color: rgba(55, 55, 55, 0.5);
+  z-index: 100;
+  font-family: 'PyeongChang-Regular';
+  font-size: 16px;
+  .join-modal-wrap {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    .join-pouch-image {
+      padding-bottom: 42px;
+    }
+    .join-celeb{
+      padding-bottom: 12px;
+    }
+    .join-share {
+  
+    }
+  }
+  
+}
