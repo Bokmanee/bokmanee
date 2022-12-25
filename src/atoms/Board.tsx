@@ -5,9 +5,10 @@ interface BoardProps {
   username?: string;
   message1?: string;
   message2?: string;
+  children?: React.ReactNode;
 }
 
-const Board = ({ username, message1, message2 }: BoardProps) => {
+const Board = ({ username, message1, message2, children }: BoardProps) => {
   return (
     <>
       <div className="board-wrapper">
@@ -17,6 +18,7 @@ const Board = ({ username, message1, message2 }: BoardProps) => {
           <br />
           {message2}
         </h1>
+        <p className='board-text'>{children}</p>
       </div>
     </>
   );

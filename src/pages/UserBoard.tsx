@@ -1,6 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import Backspace from '../atoms/Backspace';
+import BokClick from '../atoms/BokClick';
 import Board from '../atoms/Board';
+import Header from '../components/Header';
 import { WhButton, SkyButton } from '../atoms/Button';
 import "../sass/pages/_userBoard.scss";
 
@@ -14,6 +17,9 @@ const UserBoard = () => {
   }
   return (
     <>
+      <Header
+        leftChild={<Backspace />}
+        rightChild={<BokClick />} />
       <Board
         username='웨빈'
         message1='님에게'
