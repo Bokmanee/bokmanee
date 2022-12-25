@@ -5,13 +5,13 @@
     flex-direction: column;
     align-items: center;
     animation: 1.5s ease-in-out ;
-    .txt-intro{
+    @at-root .txt-intro{
       font-family: 'PyeongChang Peace';
       font-size: 14px;
       color: #fff;
       margin-bottom: 11px;
     }
-    .txt-title{
+    @at-root .txt-title{
       font-family: 'PyeongChang Peace';
       font-weight: 300;
       font-size: 36px;
