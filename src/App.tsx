@@ -8,6 +8,7 @@ import Join from "../src/pages/Join";
 import Login from "../src/pages/Login";
 import MyBoard from "../src/pages/MyBoard";
 import RegisterBok from "../src/pages/RegisterBok";
+import RegisterCompletion from './pages/RegisterCompletion';
 import Share from "../src/pages/Share";
 import Splash from "../src/pages/Splash";
 import UserBoard from "../src/pages/UserBoard";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/findMyPassword" element={<FindPassword />} />
           <Route path="/chooseBokPouch" element={<ChooseBok />} />
           <Route path="/registerMessage" element={<RegisterBok />} />
+          <Route path="/registerCompletion" element={<RegisterCompletion />} />
           <Route path="/myBoard" element={<MyBoard />} />
           <Route path="/userBoard" element={<UserBoard />} />
           <Route path="/tutorial" element={<Tutorial />} />
