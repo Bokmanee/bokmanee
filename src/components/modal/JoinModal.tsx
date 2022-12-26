@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import "../../sass/components/_joinModal.scss";
-// import "../sass/component/_joinModal.scss";
+
 function JoinModal() {
+  const navigate = useNavigate();
+  setTimeout(() => navigate("/myboard"), 3000);
   return (
     <div className="join-modal-area">
       <div className="join-modal-wrap">
