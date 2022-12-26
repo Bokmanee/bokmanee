@@ -14,6 +14,7 @@ import Splash from "../src/pages/Splash";
 import UserBoard from "../src/pages/UserBoard";
 import Tutorial from "./pages/Tutorial";
 import KaKaoLogin from "./components/KaKaoLogin";
+import NickNameSetting from "./pages/NickNameSetting";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/kakaoLogin" element={<KaKaoLogin />} />
           <Route path="/join" element={<Join />} />
+          <Route path="/nicknamesetting" element={<NickNameSetting />} />
           <Route path="/findMyPassword" element={<FindPassword />} />
           <Route path="/chooseBokPouch" element={<ChooseBok />} />
           <Route path="/registerMessage" element={<RegisterBok />} />

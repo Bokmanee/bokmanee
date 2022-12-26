@@ -22,7 +22,7 @@ function KaKaoLogin() {
         console.log(data);
         if (data.data.access_token) {
           localStorage.setItem("token", data.data.access_token);
-          navigate("/myBoard");
+          navigate("/nicknamesetting");
         } else {
           navigate("/");
         }

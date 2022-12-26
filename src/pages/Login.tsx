@@ -12,12 +12,22 @@ import Header from "../components/Header";
 import BokClick from "../atoms/BokClick";
 
 const Login = () => {
+  const [onNickNameSetting, setOnNickNameSetting] =
+    React.useState<boolean>(false);
   const REST_API_KEY = "78b882d931f2a2e937f9edd73d866867";
   const REDIRECT_URI = "http://localhost:3000/kakaoLogin";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code `;
-  const handelKakaoLogin = () => {
+  const handleKakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
+    setOnNickNameSetting(true);
   };
+
+  const handleJoin = () => {
+    window.location.href = "/join";
+    setOnNickNameSetting(false);
+  };
+  console.log(onNickNameSetting);
+
   return (
     <div className="wrap">
       <Header rightChild={<BokClick />} />
@@ -33,9 +43,9 @@ const Login = () => {
         </Link>
 
         <div className="list-join">
-          <KakaoButton onClick={handelKakaoLogin}>카카오</KakaoButton>
+          <KakaoButton onClick={handleKakaoLogin}>카카오</KakaoButton>
           <GitHubButton>깃허브</GitHubButton>
-          <SkyButton>복만이 시작하기</SkyButton>
+          <SkyButton onClick={handleJoin}>복만이 가입하기</SkyButton>
         </div>
       </section>
     </div>
