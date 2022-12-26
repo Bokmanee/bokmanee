@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Backspace from '../atoms/Backspace';
 import BokClick from '../atoms/BokClick';
 import Board from '../atoms/Board';
@@ -7,6 +8,10 @@ import Message from '../components/Message';
 import "../sass/pages/_registerBok.scss";
 
 const RegisterBok = () => {
+  const navigate = useNavigate();
+  const linkToRegisterCompletion = () => {
+    navigate('/registerCompletion');
+  }
   return (
     <>
       <Header
@@ -20,7 +25,7 @@ const RegisterBok = () => {
       />
       <Message
         isReadOnly={false}
-        onClick={() => { }}
+        onClick={linkToRegisterCompletion}
       />
     </>
   );
