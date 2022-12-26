@@ -8,11 +8,12 @@ import Join from "../src/pages/Join";
 import Login from "../src/pages/Login";
 import MyBoard from "../src/pages/MyBoard";
 import RegisterBok from "../src/pages/RegisterBok";
-import RegisterCompletion from './pages/RegisterCompletion';
+import RegisterCompletion from "./pages/RegisterCompletion";
 import Share from "../src/pages/Share";
 import Splash from "../src/pages/Splash";
 import UserBoard from "../src/pages/UserBoard";
 import Tutorial from "./pages/Tutorial";
+import KaKaoLogin from "./components/KaKaoLogin";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Splash />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/kakaoLogin" element={<KaKaoLogin />} />
           <Route path="/join" element={<Join />} />
           <Route path="/findMyPassword" element={<FindPassword />} />
           <Route path="/chooseBokPouch" element={<ChooseBok />} />
