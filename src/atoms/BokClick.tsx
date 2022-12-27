@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const BokClick = () => {
+  const navigate = useNavigate();
   return (
     <button
       onClick={() => {
-        // 튜토리얼 모달창 띄우기
+        navigate("/tutorial");
       }}
       aria-label="튜토리얼 버튼"
     >
