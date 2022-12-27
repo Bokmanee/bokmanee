@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Backspace from '../atoms/Backspace';
 import BokClick from '../atoms/BokClick';
@@ -8,18 +8,27 @@ import { WhButton } from '../atoms/Button';
 import Input from '../atoms/Input';
 import "../sass/pages/_chooseBok.scss";
 
-const ChooseBok = () => {
+const ChooseBok = ({ userInfo }: any) => {
+  const [nickname, setNickname] = useState("");
+
+  const onChange = (event: any) => {
+    setNickname(event.target.value);
+    console.log(event.target.value);
+  }
+
   const navigate = useNavigate();
   const linkToRegisterMessage = () => {
     navigate('/registerMessage')
   }
+
+
   return (
     <>
       <Header
         leftChild={<Backspace />}
         rightChild={<BokClick />} />
       <Board
-        username='웨빈'
+        username={userInfo.displayName}
         message1='님에게'
         message2='새해 응원 메시지를 남겨보세요 !'
         children='* 수정이 어려우니 신중히 입력해주세요'
@@ -30,6 +39,8 @@ const ChooseBok = () => {
           label='닉네임'
           type='text'
           placeholder='닉네임'
+          value={nickname}
+          onChange={onChange}
           required={true} />
         <div className='pouch-wrap'>
           <div>

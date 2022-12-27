@@ -7,7 +7,9 @@ import Header from '../components/Header';
 import { WhButton, SkyButton } from '../atoms/Button';
 import "../sass/pages/_userBoard.scss";
 
-const UserBoard = () => {
+const UserBoard = ({ userInfo }: any) => {
+  console.log(userInfo !== null && userInfo.uid)
+
   const navigate = useNavigate();
   const linkToChooseBokPouch = () => {
     navigate('/chooseBokPouch')
@@ -21,7 +23,7 @@ const UserBoard = () => {
         leftChild={<Backspace />}
         rightChild={<BokClick />} />
       <Board
-        username='웨빈'
+        username={userInfo.displayName}
         message1='님에게'
         message2='새해 응원 메시지를 남겨보세요 !'
       />
