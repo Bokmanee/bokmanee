@@ -1,0 +1,17 @@
+.scroll-custom {
+    /* 스크롤바 설정 */
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    /* 스크롤바 막대 설정 */
+    &::-webkit-scrollbar-thumb {
+        height: 17%;
+        background-color: #c3d2ff;
+        border-radius: 10px;
+    }
+    /* 스크롤바 뒷 배경 설정 */
+    &::-webkit-scrollbar-track {
+        background-color: rgba(195, 210, 255, 0.2);
+
+    }
+}
