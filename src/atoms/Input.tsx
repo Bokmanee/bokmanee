@@ -6,6 +6,7 @@ interface InputProps {
   label?: string;
   type?: string;
   placeholder?: string | any;
+  name?: string;
   value?: string | any;
   maxLength?: number;
   required?: boolean;
@@ -18,6 +19,7 @@ const Input = ({
   type,
   placeholder,
   value,
+  name,
   maxLength,
   required,
   onChange,
@@ -33,6 +35,7 @@ const Input = ({
         id={id ?? id}
         type={type ?? type}
         placeholder={placeholder ?? placeholder}
+        name={name ?? name}
         value={value ?? value}
         maxLength={maxLength ?? maxLength}
         required={required ?? required}

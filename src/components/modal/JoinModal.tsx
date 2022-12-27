@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 function JoinModal() {
   const navigate = useNavigate();
-  setTimeout(() => navigate("/myboard"), 3000);
+  setTimeout(() => navigate("/login"), 3000);
   return (
     <div className="modal-area">
       <div className="join-modal-wrap">

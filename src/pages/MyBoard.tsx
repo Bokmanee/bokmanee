@@ -7,7 +7,7 @@ import BokPouch from "../atoms/BokPouch";
 import { WhButton } from "../atoms/Button";
 import ShareModal from "../components/modal/ShareModal";
 
-const MyBoard = () => {
+const MyBoard = ({ userInfo }: any) => {
   const [isShare, setIsShare] = useState(false);
   const outSection = useRef(null);
 
@@ -29,7 +29,7 @@ const MyBoard = () => {
       <Header rightChild={<BokClick />} />
       <div className="wrap-myboard">
         <Board
-          username="옌니"
+          username={userInfo.displayName}
           message1="님이 받은"
           message2="새해 응원 메시지를 확인해보세요  !"
         />
