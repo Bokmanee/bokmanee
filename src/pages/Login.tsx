@@ -5,6 +5,7 @@ import {
   GitHubButton,
   KakaoButton,
   SkyButton,
+  GoogleButton,
 } from "../atoms/Button";
 import "../sass/pages/_login.scss";
 import Input from "../atoms/Input";
@@ -12,9 +13,13 @@ import Header from "../components/Header";
 import BokClick from "../atoms/BokClick";
 
 // 위정
-import { UserInputInterface } from './Join';
-import { appAuth } from '../firebase/config';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { UserInputInterface } from "./Join";
+import { appAuth } from "../firebase/config";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 
 const Login = ({ userInfo }: any) => {
   const [onNickNameSetting, setOnNickNameSetting] =
@@ -22,32 +27,47 @@ const Login = ({ userInfo }: any) => {
   const REST_API_KEY = "78b882d931f2a2e937f9edd73d866867";
   const REDIRECT_URI = "http://localhost:3000/kakaoLogin";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code `;
+  const [userGoogleData, setUserGoogleData] = useState("");
+
   const handleKakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
     setOnNickNameSetting(true);
+  };
+
+  const handleGoogleLogin = () => {
+    // window.location.href = /;
+    const provider = new GoogleAuthProvider(); // provider를 구글로 설정
+    signInWithPopup(appAuth, provider) // popup을 이용한 signup
+      .then((data) => {
+        // setUserGoogleData(data.user); // user data 설정
+        console.log(data); // console로 들어온 데이터 표시
+        // console.log(data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleJoin = () => {
     window.location.href = "/join";
     setOnNickNameSetting(false);
   };
-  console.log(onNickNameSetting);
 
   // 위정
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState<UserInputInterface>({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
 
   const { email, password } = inputs;
 
   const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
-    setInputs({ ...inputs, [name]: value })
+    setInputs({ ...inputs, [name]: value });
     console.log({ ...inputs, [name]: value });
-  }
+  };
 
   const onSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,12 +75,12 @@ const Login = ({ userInfo }: any) => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        navigate(`/${userInfo.uid}/myboard`)
+        navigate(`/${userInfo.uid}/myboard`);
       })
       .catch((error) => {
         console.log(error);
-      })
-  }
+      });
+  };
 
   return (
     <div className="wrap">
@@ -70,17 +90,32 @@ const Login = ({ userInfo }: any) => {
         <h4 className="txt-intro">HAPPY 2023 !</h4>
         <h2 className="txt-title">우리 모두 복만이</h2>
         <form onSubmit={onSubmit}>
-          <Input type="email" label="이메일" placeholder="이메일" name='email' value={email} onChange={onChange} />
-          <Input type="password" label="비밀번호" placeholder="비밀번호" name='password' value={password} onChange={onChange} />
-          <WhButton type='submit'>로그인</WhButton>
+          <Input
+            type="email"
+            label="이메일"
+            placeholder="이메일"
+            name="email"
+            value={email}
+            onChange={onChange}
+          />
+          <Input
+            type="password"
+            label="비밀번호"
+            placeholder="비밀번호"
+            name="password"
+            value={password}
+            onChange={onChange}
+          />
+          <WhButton type="submit">로그인</WhButton>
         </form>
         <Link className="link-passfind" to={"/findMyPassword"}>
           비밀번호를 잊으셨나요?
         </Link>
 
         <div className="list-join">
-          <KakaoButton onClick={handleKakaoLogin}>카카오</KakaoButton>
-          <GitHubButton>깃허브</GitHubButton>
+          <KakaoButton onClick={handleKakaoLogin}>카카오 로그인</KakaoButton>
+          <GitHubButton>깃허브 로그인</GitHubButton>
+          <GoogleButton onClick={handleGoogleLogin}>구글 로그인</GoogleButton>
           <SkyButton onClick={handleJoin}>복만이 가입하기</SkyButton>
         </div>
       </section>

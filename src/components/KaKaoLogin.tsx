@@ -9,6 +9,9 @@ function KaKaoLogin() {
   const REST_API_KEY = "78b882d931f2a2e937f9edd73d866867";
   const REDIRECT_URI = "http://localhost:3000/kakaoLogin";
 
+  const userNickName = localStorage.getItem("nickName");
+  console.log(userNickName);
+
   const getKakaoToken = async () => {
     const url = `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${KAKAO_CODE}`;
 
@@ -22,7 +25,11 @@ function KaKaoLogin() {
         console.log(data);
         if (data.data.access_token) {
           localStorage.setItem("token", data.data.access_token);
-          navigate("/nicknamesetting");
+          if (userNickName) {
+            navigate("/myboard");
+          } else {
+            navigate("/nicknamesetting");
+          }
         } else {
           navigate("/");
         }
