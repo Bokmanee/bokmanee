@@ -42,4 +42,12 @@ const GitHubButton = ({ onClick, children }: BtnProps) => {
   );
 };
 
-export { WhButton, SkyButton, KakaoButton, GitHubButton };
+const GoogleButton = ({ onClick, children }: BtnProps) => {
+  return (
+    <button className="btn-google" type="button" onClick={onClick ?? onClick}>
+      {children}
+    </button>
+  );
+};
+
+export { WhButton, SkyButton, KakaoButton, GitHubButton, GoogleButton };

@@ -5,6 +5,7 @@ import {
   GitHubButton,
   KakaoButton,
   SkyButton,
+  GoogleButton,
 } from "../atoms/Button";
 import "../sass/pages/_login.scss";
 import Input from "../atoms/Input";
@@ -23,9 +24,15 @@ const Login = ({ userInfo }: any) => {
   const REST_API_KEY = "78b882d931f2a2e937f9edd73d866867";
   const REDIRECT_URI = "http://localhost:3000/kakaoLogin";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code `;
+  const [userGoogleData, setUserGoogleData] = useState("");
+
   const handleKakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
     setOnNickNameSetting(true);
+  };
+
+  const handleGoogleLogin = () => {
+    handleGoogle();
   };
 
   const handleJoin = () => {
