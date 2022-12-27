@@ -16,7 +16,6 @@ import BokClick from "../atoms/BokClick";
 import { UserInputInterface } from "./Join";
 import { appAuth } from "../firebase/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { handleGoogle } from "../components/GoogleLogin";
 
 const Login = ({ userInfo }: any) => {
   const [onNickNameSetting, setOnNickNameSetting] =
@@ -54,7 +53,6 @@ const Login = ({ userInfo }: any) => {
     email: "",
     password: "",
   });
-
   console.log(inputs);
 
   const { email, password } = inputs;
