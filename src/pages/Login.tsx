@@ -15,11 +15,8 @@ import BokClick from "../atoms/BokClick";
 // 위정
 import { UserInputInterface } from "./Join";
 import { appAuth } from "../firebase/config";
-import {
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { handleGoogle } from "../components/GoogleLogin";
 
 const Login = ({ userInfo }: any) => {
   const [onNickNameSetting, setOnNickNameSetting] =
@@ -35,23 +32,20 @@ const Login = ({ userInfo }: any) => {
   };
 
   const handleGoogleLogin = () => {
-    // window.location.href = /;
-    const provider = new GoogleAuthProvider(); // provider를 구글로 설정
-    signInWithPopup(appAuth, provider) // popup을 이용한 signup
-      .then((data) => {
-        // setUserGoogleData(data.user); // user data 설정
-        console.log(data); // console로 들어온 데이터 표시
-        // console.log(data.user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    handleGoogle();
   };
 
   const handleJoin = () => {
     window.location.href = "/join";
     setOnNickNameSetting(false);
   };
+  // console.log(onNickNameSetting);
+
+  //혜빈
+  // const [email, onChangeEmail] = useInput("");
+  // const [password, onChangePassword] = useInput("");
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   // 위정
   const navigate = useNavigate();
@@ -61,13 +55,36 @@ const Login = ({ userInfo }: any) => {
     password: "",
   });
 
+  console.log(inputs);
+
   const { email, password } = inputs;
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.currentTarget;
-    setInputs({ ...inputs, [name]: value });
-    console.log({ ...inputs, [name]: value });
+  const emailCheck = (e: any) => {
+    let regex =
+      /^[0-9a-zA-Z]([-_.0-9a-zA-Z])*@[0-9a-zA-Z]([-_.0-9a-zA-Z])*.([a-zA-Z])*/;
+
+    if (!e.target.value || regex.test(e.target.value)) setEmailError(false);
+    else setEmailError(true);
+    setInputs(e.target.value);
+    return regex.test(email);
   };
+
+  const onChangePassword = (e: any) => {
+    //setPassword(e.target.value);
+    //숫자와 문자 포함 형태의 6~12자리
+    const regex = /^[A-Za-z0-9]{6,12}$/;
+    if (!e.target.value || regex.test(e.target.value)) {
+      setPasswordError(false);
+    } else setPasswordError(true);
+    setInputs(e.target.value);
+    return regex.test(password);
+  };
+
+  // const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  //   const { name, value } = e.currentTarget;
+  //   setInputs({ ...inputs, [name]: value });
+  //   console.log({ ...inputs, [name]: value });
+  // };
 
   const onSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -96,16 +113,24 @@ const Login = ({ userInfo }: any) => {
             placeholder="이메일"
             name="email"
             value={email}
-            onChange={onChange}
+            onChange={emailCheck}
           />
+          {emailError && (
+            <strong className="txt-error">이메일 형식이 아닙니다.</strong>
+          )}
           <Input
             type="password"
             label="비밀번호"
             placeholder="비밀번호"
             name="password"
             value={password}
-            onChange={onChange}
+            onChange={onChangePassword}
           />
+          {passwordError && (
+            <strong className="txt-error">
+              숫자와 문자 포함 형태의 6~12자리입니다.
+            </strong>
+          )}
           <WhButton type="submit">로그인</WhButton>
         </form>
         <Link className="link-passfind" to={"/findMyPassword"}>
@@ -113,9 +138,8 @@ const Login = ({ userInfo }: any) => {
         </Link>
 
         <div className="list-join">
-          <KakaoButton onClick={handleKakaoLogin}>카카오 로그인</KakaoButton>
-          <GitHubButton>깃허브 로그인</GitHubButton>
-          <GoogleButton onClick={handleGoogleLogin}>구글 로그인</GoogleButton>
+          <KakaoButton onClick={handleKakaoLogin}>카카오로 로그인</KakaoButton>
+          <GitHubButton>깃허브로 로그인</GitHubButton>
           <SkyButton onClick={handleJoin}>복만이 가입하기</SkyButton>
         </div>
       </section>
