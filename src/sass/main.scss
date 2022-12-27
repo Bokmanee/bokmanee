@@ -2,27 +2,31 @@
 @import "abstracts/variables";
 @import "abstracts/customScroll";
 
-@import "atoms/input";
-@import "atoms/button";
 @import "atoms/board";
 @import "atoms/bokPouch";
+@import "atoms/button";
+@import "atoms/input";
 
 @import "base/font";
 @import "base/reset";
 
 @import "layout/allLayout";
+@import "layout/flexLayout";
 @import "layout/header";
 
-@import "components/message";
 @import "components/joinModal";
+@import "components/message";
+@import "components/modal";
 @import "components/shareModal";
 
+@import "pages/chooseBok";
+@import "pages/findPassword";
+@import "pages/join";
+@import "pages/login";
+@import "pages/myBoard";
+@import "pages/registerBok";
+@import "pages/registerCompletion";
+@import "pages/share";
 @import "pages/splash";
 @import "pages/tutorial";
-@import "pages/chooseBok";
 @import "pages/userBoard";
-@import "pages/findPassword";
-@import "pages/myBoard";
-@import "pages/registerCompletion";
-
-@import "components/message";
