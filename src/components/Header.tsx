@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export interface HeaderProps {
   leftChild?: React.ReactNode;
@@ -6,10 +7,15 @@ export interface HeaderProps {
 }
 
 const Header = ({ leftChild, rightChild }: HeaderProps) => {
+  const navigate = useNavigate();
+
+  const moveToTutorial = () => {
+    navigate("/tutorial");
+  };
   return (
     <div className="wrap-header">
       <div>{leftChild}</div>
-      <div>{rightChild}</div>
+      <div onClick={moveToTutorial}>{rightChild}</div>
     </div>
   );
 };
