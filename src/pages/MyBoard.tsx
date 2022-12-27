@@ -16,7 +16,7 @@ const MyBoard = () => {
           message1="님이 받은"
           message2="새해 응원 메시지를 확인해보세요  !"
         />
-        <div className="grid-bok">
+        <div className="grid-bok scroll-custom">
           <BokPouch color="red" nickname="전갈진" />
           <BokPouch color="purple" nickname="전갈진" />
           <BokPouch color="red" nickname="전갈진" />

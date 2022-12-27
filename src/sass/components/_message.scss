@@ -8,13 +8,13 @@
 
 .message-readOnly {
     @include message-default;
-    overflow-y: scroll;
     position: relative;
     min-height: 424px;
     max-height: 709px;
     padding: 35px 35px 60px;
 
     div {
+    overflow-y: scroll;
         min-height: 280px;
     }
     @at-root .message-line {
