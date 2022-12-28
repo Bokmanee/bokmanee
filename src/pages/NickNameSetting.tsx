@@ -6,18 +6,24 @@ import { WhButton } from "../atoms/Button";
 import Header from "../components/Header";
 import JoinModal from "../components/modal/JoinModal";
 
-function NickNameSetting() {
+interface Googleinfo {
+  googleEmail: string | null;
+  googleUid: string | null;
+}
+
+function NickNameSetting({ googleEmail, googleUid }: Googleinfo) {
   const [onSubmit, setOnSubmit] = React.useState<boolean>(false);
 
-  const [nickName, setNickName] = useState("");
+  // const [nickName, setNickName] = useState("");
+  const [googleDisplayName, setGoogleDisplayName] = useState<string>("");
 
   const handleNickName = (e: any) => {
-    setNickName(e.target.value);
+    setGoogleDisplayName(e.target.value);
   };
   const onSubmitModal = () => {
     setOnSubmit(true);
     // navigate("/myboard");
-    localStorage.setItem("nickName", nickName);
+    localStorage.setItem("nickName", googleDisplayName);
   };
   return (
     <section className="join-wrap">
