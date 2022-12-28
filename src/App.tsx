@@ -6,13 +6,13 @@ import ChooseBok from "../src/pages/ChooseBok";
 import FindPassword from "../src/pages/FindPassword";
 import Join from "../src/pages/Join";
 import Login from "../src/pages/Login";
+import LoginCheck from './pages/LoginCheck';
 import MyBoard from "../src/pages/MyBoard";
 import RegisterBok from "../src/pages/RegisterBok";
 import RegisterCompletion from "./pages/RegisterCompletion";
 import ReceivedMsg from "./pages/ReceivedMsg";
 import Splash from "../src/pages/Splash";
 import UserBoard from "../src/pages/UserBoard";
-import UserBoardPage from "./pages/UserBoardPage";
 import Tutorial from "./pages/Tutorial";
 import KaKaoLogin from "./components/KaKaoLogin";
 import NickNameSetting from "./pages/NickNameSetting";
@@ -24,8 +24,6 @@ import { UserInterface } from "../src/pages/Join";
 
 function App() {
   const [userInfo, setUserInfo] = useState<UserInterface | any>("");
-  // const [init, setInit] = useState<boolean>(false);
-  // const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
     onAuthStateChanged(appAuth, async (user) => {
@@ -47,8 +45,8 @@ function App() {
     });
   }, []);
 
-  // console.log(isLogin);
-  // console.log(appAuth.currentUser);
+  // 유저 uid 토큰으로 사용
+  localStorage.setItem('token', userInfo.uid)
   // console.log(userInfo);
 
   return (
@@ -56,17 +54,14 @@ function App() {
       <AllLayout>
         <Routes>
           <Route path="/" element={<Splash />} />
-          <Route path="/login" element={<Login userInfo={userInfo} />} />
+          <Route path="/main" element={<LoginCheck userInfo={userInfo} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/kakaoLogin" element={<KaKaoLogin />} />
           <Route path="/join" element={<Join />} />
           <Route path="/nicknamesetting" element={<NickNameSetting />} />
           <Route path="/findMyPassword" element={<FindPassword />} />
-          <Route path="/:accountname/myboard" element={<MyBoard />} />
           <Route path="/:accountname/userBoard" element={<UserBoard />} />
-          <Route
-            path="/:accountname/message_board"
-            element={<UserBoardPage userInfo={userInfo} />}
-          />
+          <Route path="/:accountname/message_board" element={<MyBoard />} />
           <Route
             path="/chooseBokPouch"
             element={<ChooseBok userInfo={userInfo} />}
