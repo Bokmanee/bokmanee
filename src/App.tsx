@@ -10,7 +10,6 @@ import MyBoard from "../src/pages/MyBoard";
 import RegisterBok from "../src/pages/RegisterBok";
 import RegisterCompletion from "./pages/RegisterCompletion";
 import ReceivedMsg from "./pages/ReceivedMsg";
-import Share from "../src/pages/Share";
 import Splash from "../src/pages/Splash";
 import UserBoard from "../src/pages/UserBoard";
 import UserBoardPage from "./pages/UserBoardPage";
@@ -82,7 +81,6 @@ function App() {
           />
           <Route path="/receivedMessage_from/:who" element={<ReceivedMsg />} />
           <Route path="/tutorial" element={<Tutorial />} />
-          <Route path="/shareBySNS" element={<Share />} />
         </Routes>
       </AllLayout>
     </BrowserRouter>

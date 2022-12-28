@@ -1,7 +1,7 @@
 import React from "react";
 import { KakaoButton, WhButton } from "../../atoms/Button";
 
-const ShareModal = () => {
+const ShareModal = (userInfo: any) => {
   return (
     <>
       <h1 className="ir">공유하기</h1>
