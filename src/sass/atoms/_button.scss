@@ -35,3 +35,12 @@
     background-repeat: no-repeat;
     background-position: 19px 50%;
 }
+
+.btn-google {
+    @include btn;
+    background-color: $wh-color;
+    color: $bk-color;
+    background-image: url("../../../public/assets/images//icon-github.svg");
+    background-repeat: no-repeat;
+    background-position: 19px 50%;
+}
