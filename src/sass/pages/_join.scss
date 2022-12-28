@@ -19,13 +19,14 @@
     padding-bottom: 36px;
   }
   input {
-    font-family: 'PyeongChang-Bold';
+    font-family: 'PyeongChang';
+    font-size: 14px;
+    color: $wh-color;
     width: 266px;
     font-size: 14px;
     border-bottom: 1px solid $wh-color;
     padding-bottom: 9px;
     margin-bottom: 24px;
-    color: #E0E0E0;
     &::placeholder {
       color: #E0E0E0;
     }

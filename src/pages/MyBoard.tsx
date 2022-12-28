@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import BokClick from "../atoms/BokClick";
 import Board from "../atoms/Board";
@@ -7,10 +7,18 @@ import BokPouch from "../atoms/BokPouch";
 import { WhButton } from "../atoms/Button";
 import ShareModal from "../components/modal/ShareModal";
 
-import { appFireStore } from '../firebase/config';
-import { collection, query, where, orderBy, onSnapshot, updateDoc, doc } from 'firebase/firestore';
-import { UserInterface } from './Join';
-import { MessageInputInterface } from './RegisterBok';
+import { appFireStore } from "../firebase/config";
+import {
+  collection,
+  query,
+  where,
+  orderBy,
+  onSnapshot,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
+import { UserInterface } from "./Join";
+import { MessageInputInterface } from "./RegisterBok";
 
 // export interface BoardType {
 //   userInfo: UserInterface;
@@ -21,28 +29,24 @@ const MyBoard = ({ userInfo }: any) => {
   const [isShare, setIsShare] = useState(false);
   const outSection = useRef(null);
 
-  console.log(userInfo);
-
   const [messageList, setMessageList] = useState<MessageInputInterface[]>([]);
 
   useEffect(() => {
-    const q = query(
-      collection(appFireStore, 'message'),
-    );
+    const q = query(collection(appFireStore, "message"));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const arr = querySnapshot.docs.map((doc) => {
         return {
           id: doc.id,
           ...doc.data(),
-        }
-      })
+        };
+      });
       // @ts-ignore
-      setMessageList(arr)
-    })
+      setMessageList(arr);
+    });
     return () => {
-      unsubscribe()
-    }
-  }, [])
+      unsubscribe();
+    };
+  }, []);
 
   // const onClick = async (e: any) => {
   //   const docId = e.target.id;
@@ -66,7 +70,7 @@ const MyBoard = ({ userInfo }: any) => {
             }
           }}
         >
-          <ShareModal />
+          <ShareModal userInfo={userInfo} />
         </section>
       )}
       <Header rightChild={<BokClick />} />
@@ -82,20 +86,23 @@ const MyBoard = ({ userInfo }: any) => {
               return (
                 <BokPouch
                   onClick={() => {
-                    navigate(`/receivedMessage_from/${data.email.split('@')[0]}`, {
-                      state: {
-                        message: data.message,
-                        nickname: data.nickName,
-                      }
-                    })
+                    navigate(
+                      `/receivedMessage_from/${data.email.split("@")[0]}`,
+                      {
+                        state: {
+                          message: data.message,
+                          nickname: data.nickName,
+                        },
+                      },
+                    );
                   }}
                   key={data.id}
                   color="red"
-                  nickname={data.nickName} />
-              )
+                  nickname={data.nickName}
+                />
+              );
             }
-          })
-          }
+          })}
         </div>
         {/* <p style={{ textAlign: 'center', color: 'white' }}>
           아직 받은 편지가 없습니다. <br />
