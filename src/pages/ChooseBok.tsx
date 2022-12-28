@@ -18,7 +18,9 @@ const ChooseBok = ({ userInfo }: any) => {
 
   const navigate = useNavigate();
   const linkToRegisterMessage = () => {
-    navigate('/registerMessage')
+    navigate('/registerMessage', {
+      state: nickname,
+    })
   }
 
 

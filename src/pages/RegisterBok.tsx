@@ -1,33 +1,61 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, ChangeEvent } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
 import Backspace from '../atoms/Backspace';
 import BokClick from '../atoms/BokClick';
 import Board from '../atoms/Board';
 import Header from '../components/Header';
 import Message from '../components/Message';
-import "../sass/pages/_registerBok.scss";
-export interface messageInterface {
-  contents: string;
+
+import { appAuth, appFireStore } from '../firebase/config';
+import { collection, addDoc } from 'firebase/firestore';
+
+import { UserInterface } from './Join';
+
+type MessageFormType = {
+  userInfo: UserInterface;
+}
+export interface MessageInputInterface {
+  message: string,
+  id?: string,
+  uid?: string,
+  email?: string | any,
+  nickName?: string,
 }
 
-const RegisterBok = ({ userInfo }: any) => {
+const RegisterBok = ({ userInfo }: MessageFormType) => {
   console.log(userInfo);
-
-  const [message, setMessage] = useState<string>("");
+  const location = useLocation();
+  console.log(location.state);
+  const nickname = location.state
 
   const navigate = useNavigate();
-  const linkToRegisterCompletion = () => {
+
+  const [inputs, setInputs] = useState<MessageInputInterface>({
+    message: ""
+  })
+
+  const { message } = inputs;
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.currentTarget;
+    setInputs({ ...inputs, [name]: value });
+  }
+
+  const onClick = async () => {
+    if (message === "") {
+      alert('메세지를 입력해주세요')
+      return false;
+    }
     navigate('/registerCompletion', {
       state: { message }
     });
+    await addDoc(collection(appFireStore, 'message'), {
+      uid: userInfo.uid,
+      message: message,
+      email: userInfo.email,
+      nickName: nickname,
+    })
   }
-
-  const onChange = (event: any) => {
-    setMessage(event.target.value);
-  }
-
-  console.log('message', message);
-
 
 
   return (
@@ -43,12 +71,11 @@ const RegisterBok = ({ userInfo }: any) => {
       />
       <Message
         isReadOnly={false}
-        onClick={linkToRegisterCompletion}
+        onClick={onClick}
         onChange={onChange}
+        value={message}
+        name='message'
       />
-      <div style={{ color: 'white' }}>
-        {message}
-      </div>
     </>
   );
 };

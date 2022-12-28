@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   WhButton,
   GitHubButton,
@@ -32,7 +32,7 @@ const Login = ({ userInfo }: any) => {
   };
 
   const handleGoogleLogin = () => {
-    handleGoogle();
+    // handleGoogle();
   };
 
   const handleJoin = () => {
@@ -49,6 +49,10 @@ const Login = ({ userInfo }: any) => {
 
   // 위정
   const navigate = useNavigate();
+  const location = useLocation();
+  const loginStatus = location.state;
+  console.log(loginStatus);
+  console.log(userInfo);
 
   const [inputs, setInputs] = useState<UserInputInterface>({
     email: "",
@@ -79,11 +83,11 @@ const Login = ({ userInfo }: any) => {
     return regex.test(password);
   };
 
-  // const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
-  //   const { name, value } = e.currentTarget;
-  //   setInputs({ ...inputs, [name]: value });
-  //   console.log({ ...inputs, [name]: value });
-  // };
+  const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.currentTarget;
+    setInputs({ ...inputs, [name]: value });
+    console.log({ ...inputs, [name]: value });
+  };
 
   const onSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -91,7 +95,8 @@ const Login = ({ userInfo }: any) => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-        navigate(`/${userInfo.uid}/myboard`);
+        console.log(loginStatus);
+        navigate(`/${userInfo.email.split('@')[0]}/message_board`);
       })
       .catch((error) => {
         console.log(error);
@@ -112,7 +117,7 @@ const Login = ({ userInfo }: any) => {
             placeholder="이메일"
             name="email"
             value={email}
-            onChange={emailCheck}
+            onChange={onChange}
           />
           {emailError && (
             <strong className="txt-error">이메일 형식이 아닙니다.</strong>
@@ -123,7 +128,7 @@ const Login = ({ userInfo }: any) => {
             placeholder="비밀번호"
             name="password"
             value={password}
-            onChange={onChangePassword}
+            onChange={onChange}
           />
           {passwordError && (
             <strong className="txt-error">

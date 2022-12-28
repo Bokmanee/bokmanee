@@ -5,12 +5,13 @@ interface MessageProps {
   isReadOnly: boolean;
   nickName?: string;
   children?: React.ReactNode;
+  name?: string,
   value?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement> | any) => void;
   onClick: () => void;
 }
 
-const Message = ({ isReadOnly, nickName, children, value, onChange, onClick }: MessageProps) => {
+const Message = ({ isReadOnly, nickName, children, name, value, onChange, onClick }: MessageProps) => {
   return isReadOnly ? (
     <article className="message-readOnly ">
       <div className="message-line scroll-custom">
@@ -23,7 +24,7 @@ const Message = ({ isReadOnly, nickName, children, value, onChange, onClick }: M
     </article>
   ) : (
     <form className="message-write">
-      <textarea onChange={onChange} value={value} className="scroll-custom" placeholder="메세지를 적어주세요." />
+      <textarea name={name} onChange={onChange} value={value} className="scroll-custom" placeholder="메세지를 적어주세요." />
       <SkyButton onClick={onClick} type="button">
         저장하기
       </SkyButton>
