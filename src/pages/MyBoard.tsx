@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Header from "../components/Header";
 import BokClick from "../atoms/BokClick";
 import Board from "../atoms/Board";
 import BokPouch from "../atoms/BokPouch";
+import UserBoard from './UserBoard';
 import { WhButton } from "../atoms/Button";
 import ShareModal from "../components/modal/ShareModal";
 
@@ -17,14 +18,10 @@ import {
   updateDoc,
   doc,
 } from "firebase/firestore";
-import { UserInterface } from "./Join";
 import { MessageInputInterface } from "./RegisterBok";
 
-// export interface BoardType {
-//   userInfo: UserInterface;
-// }
 
-const MyBoard = ({ userInfo }: any) => {
+const MyBoard = () => {
   const navigate = useNavigate();
   const [isShare, setIsShare] = useState(false);
   const outSection = useRef(null);
@@ -48,15 +45,11 @@ const MyBoard = ({ userInfo }: any) => {
     };
   }, []);
 
-  // const onClick = async (e: any) => {
-  //   const docId = e.target.id;
-  //   const ref = doc(appFireStore, 'message', docId);
-  //   await updateDoc(ref, {
-  //     status: "DONE",
-  //   })
-  // }
+  const location = useLocation();
+  const userInfos = location.state;
+  console.log(location.state);
 
-  // console.log(messageList);
+  const userToken = localStorage.getItem('token');
 
   return (
     <>
@@ -70,51 +63,58 @@ const MyBoard = ({ userInfo }: any) => {
             }
           }}
         >
-          <ShareModal userInfo={userInfo} />
+          <ShareModal userInfo={userInfos} />
         </section>
       )}
       <Header rightChild={<BokClick />} />
       <div className="wrap-myboard">
-        <Board
-          username={userInfo.displayName}
-          message1="님이 받은"
-          message2="새해 응원 메시지를 확인해보세요  !"
-        />
-        <div className="grid-bok scroll-custom">
-          {messageList.map((data) => {
-            if (userInfo.uid === data.uid) {
-              return (
-                <BokPouch
-                  onClick={() => {
-                    navigate(
-                      `/receivedMessage_from/${data.email.split("@")[0]}`,
-                      {
-                        state: {
-                          message: data.message,
-                          nickname: data.nickName,
-                        },
-                      },
-                    );
-                  }}
-                  key={data.id}
-                  color="red"
-                  nickname={data.nickName}
-                />
-              );
-            }
-          })}
-        </div>
-        {/* <p style={{ textAlign: 'center', color: 'white' }}>
-          아직 받은 편지가 없습니다. <br />
-          친구들에게 링크를 공유해보세요!
-        </p> */}
-        <WhButton
-          onClick={() => {
-            setIsShare(true);
-          }}
-        >
-          링크 공유하기
-        </WhButton>
+        {
+          userInfos.uid === userToken ?
+            <>
+              <Board
+                username={userInfos.displayName}
+                message1="님이 받은"
+                message2="새해 응원 메시지를 확인해보세요 !"
+              />
+              <div className="grid-bok scroll-custom">
+                {messageList.map((data) => {
+                  if (userInfos.uid === data.uid) {
+                    return (
+                      <BokPouch
+                        onClick={() => {
+                          navigate(`/receivedMessage_from/${data.email.split('@')[0]}`, {
+                            state: {
+                              message: data.message,
+                              nickname: data.nickName,
+                            }
+                          })
+                        }}
+                        key={data.id}
+                        color="red"
+                        nickname={data.nickName} />
+                    )
+                  }
+                })
+                }
+              </div>
+              <WhButton
+                onClick={() => {
+                  setIsShare(true);
+                }}
+              >
+                링크 공유하기
+              </WhButton>
+            </>
+            :
+            <>
+              <Board
+                username={userInfos.displayName}
+                message1="님에게"
+                message2="새해 응원 메시지를 남겨보세요 !"
+              />
+              <UserBoard />
+            </>
+        }
       </div>
     </>
   );

@@ -20,14 +20,14 @@ const UserBoard = ({ userInfo }: any) => {
 
   return (
     <>
-      <Header
+      {/* <Header
         leftChild={<Backspace />}
         rightChild={<BokClick />} />
       <Board
         username={userInfo.displayName}
         message1='님에게'
         message2='새해 응원 메시지를 남겨보세요 !'
-      />
+      /> */}
       <img className='userboard-img' src="assets/images/background-rabbit.svg" alt="복토끼 사진" />
       <div className='userboard-btn-wrap'>
         <SkyButton type='button' children='복주머니 만들기' onClick={linkToChooseBokPouch} />

@@ -22,7 +22,7 @@ import {
 } from "firebase/auth";
 import NickNameSetting from "./NickNameSetting";
 
-const Login = ({ userInfo }: any) => {
+const Login = () => {
   const navigate = useNavigate();
   //카카오정보
   const [onNickNameSetting, setOnNickNameSetting] =
@@ -79,18 +79,14 @@ const Login = ({ userInfo }: any) => {
   const [passwordError, setPasswordError] = useState(false);
 
   // 위정
-
-  const location = useLocation();
-  const loginStatus = location.state;
-  // console.log(loginStatus);
-  // console.log(userInfo);
+  // const location = useLocation();
+  // const userInfos = location.state;
+  // console.log(location.state);
 
   const [inputs, setInputs] = useState<UserInputInterface>({
     email: "",
     password: "",
   });
-  // console.log(inputs);
-
   const { email, password } = inputs;
 
   const emailCheck = (e: any) => {
@@ -123,11 +119,10 @@ const Login = ({ userInfo }: any) => {
   const onSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     await signInWithEmailAndPassword(appAuth, email, password)
-      .then((userCredential) => {
+      .then((userCredential: any) => {
         const user = userCredential.user;
         console.log(user);
-        console.log(loginStatus);
-        navigate(`/${userInfo.email.split("@")[0]}/message_board`);
+        navigate(`/main`)
       })
       .catch((error) => {
         console.log(error);
