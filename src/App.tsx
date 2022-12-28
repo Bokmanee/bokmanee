@@ -9,19 +9,19 @@ import Login from "../src/pages/Login";
 import MyBoard from "../src/pages/MyBoard";
 import RegisterBok from "../src/pages/RegisterBok";
 import RegisterCompletion from "./pages/RegisterCompletion";
-import ReceivedMsg from './pages/ReceivedMsg';
+import ReceivedMsg from "./pages/ReceivedMsg";
 import Share from "../src/pages/Share";
 import Splash from "../src/pages/Splash";
 import UserBoard from "../src/pages/UserBoard";
-import UserBoardPage from './pages/UserBoardPage';
+import UserBoardPage from "./pages/UserBoardPage";
 import Tutorial from "./pages/Tutorial";
 import KaKaoLogin from "./components/KaKaoLogin";
 import NickNameSetting from "./pages/NickNameSetting";
 
-import { appAuth, appFireStore } from './firebase/config';
-import { onAuthStateChanged } from 'firebase/auth';
-import { collection, query, where, getDocs } from 'firebase/firestore';
-import { UserInterface } from '../src/pages/Join';
+import { appAuth, appFireStore } from "./firebase/config";
+import { onAuthStateChanged } from "firebase/auth";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { UserInterface } from "../src/pages/Join";
 
 function App() {
   const [userInfo, setUserInfo] = useState<UserInterface | any>("");
@@ -32,8 +32,8 @@ function App() {
     onAuthStateChanged(appAuth, async (user) => {
       if (user) {
         const q = query(
-          collection(appFireStore, 'users'),
-          where('uid', '==', user.uid)
+          collection(appFireStore, "users"),
+          where("uid", "==", user.uid),
         );
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
@@ -42,11 +42,11 @@ function App() {
             uid: data.uid,
             email: data.email,
             displayName: data.displayName,
-          })
-        })
+          });
+        });
       }
-    })
-  }, [])
+    });
+  }, []);
 
   // console.log(isLogin);
   // console.log(appAuth.currentUser);
@@ -56,18 +56,30 @@ function App() {
     <BrowserRouter>
       <AllLayout>
         <Routes>
-          <Route path='/' element={<Splash />} />
-          <Route path='/login' element={<Login userInfo={userInfo} />} />
+          <Route path="/" element={<Splash />} />
+          <Route path="/login" element={<Login userInfo={userInfo} />} />
           <Route path="/kakaoLogin" element={<KaKaoLogin />} />
           <Route path="/join" element={<Join />} />
           <Route path="/nicknamesetting" element={<NickNameSetting />} />
           <Route path="/findMyPassword" element={<FindPassword />} />
           <Route path="/:accountname/myboard" element={<MyBoard />} />
           <Route path="/:accountname/userBoard" element={<UserBoard />} />
-          <Route path="/:accountname/message_board" element={<UserBoardPage userInfo={userInfo} />} />
-          <Route path="/chooseBokPouch" element={<ChooseBok userInfo={userInfo} />} />
-          <Route path="/registerMessage" element={<RegisterBok userInfo={userInfo} />} />
-          <Route path="/registerCompletion" element={<RegisterCompletion userInfo={userInfo} />} />
+          <Route
+            path="/:accountname/message_board"
+            element={<UserBoardPage userInfo={userInfo} />}
+          />
+          <Route
+            path="/chooseBokPouch"
+            element={<ChooseBok userInfo={userInfo} />}
+          />
+          <Route
+            path="/registerMessage"
+            element={<RegisterBok userInfo={userInfo} />}
+          />
+          <Route
+            path="/registerCompletion"
+            element={<RegisterCompletion userInfo={userInfo} />}
+          />
           <Route path="/receivedMessage_from/:who" element={<ReceivedMsg />} />
           <Route path="/tutorial" element={<Tutorial />} />
           <Route path="/shareBySNS" element={<Share />} />

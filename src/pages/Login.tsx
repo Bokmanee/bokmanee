@@ -15,16 +15,23 @@ import BokClick from "../atoms/BokClick";
 // 위정
 import { UserInputInterface } from "./Join";
 import { appAuth } from "../firebase/config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import NickNameSetting from "./NickNameSetting";
 
 const Login = ({ userInfo }: any) => {
+  const navigate = useNavigate();
   //카카오정보
   const [onNickNameSetting, setOnNickNameSetting] =
     React.useState<boolean>(false);
-  const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
-  const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code `;
-  const [userGoogleData, setUserGoogleData] = useState("");
+
+  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code `;
+
+  const [googleEmail, setGoogleEmail] = useState<string | null>("");
+  const [googleUid, setGoogleUid] = useState<string | null>("");
 
   const handleKakaoLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
@@ -33,13 +40,37 @@ const Login = ({ userInfo }: any) => {
 
   const handleGoogleLogin = () => {
     // handleGoogle();
+    //파이어베이스로 구글 로그인
+    const provider = new GoogleAuthProvider(); // provider를 구글로 설정
+    signInWithPopup(appAuth, provider) // popup을 이용한 signup
+      .then((data) => {
+        console.log(data); // console로 들어온 데이터 표시
+        setGoogleEmail(data.user.email);
+        setGoogleUid(data.user.uid);
+        // LinkToNick();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    setOnNickNameSetting(true);
   };
+  if (googleEmail !== "" && googleUid !== "") {
+    navigate("/nicknamesetting", {
+      state: { googleEmail, googleUid },
+    });
+  }
+
+  // const LinkToNick = () => {
+  //   navigate("/nicknamesetting", {
+  //     state: { googleEmail, googleUid },
+  //   });
+  // };
 
   const handleJoin = () => {
     window.location.href = "/join";
     setOnNickNameSetting(false);
   };
-  // console.log(onNickNameSetting);
 
   //혜빈
   // const [email, onChangeEmail] = useInput("");
@@ -48,17 +79,17 @@ const Login = ({ userInfo }: any) => {
   const [passwordError, setPasswordError] = useState(false);
 
   // 위정
-  const navigate = useNavigate();
+
   const location = useLocation();
   const loginStatus = location.state;
-  console.log(loginStatus);
-  console.log(userInfo);
+  // console.log(loginStatus);
+  // console.log(userInfo);
 
   const [inputs, setInputs] = useState<UserInputInterface>({
     email: "",
     password: "",
   });
-  console.log(inputs);
+  // console.log(inputs);
 
   const { email, password } = inputs;
 
@@ -144,7 +175,12 @@ const Login = ({ userInfo }: any) => {
         <div className="list-join">
           <KakaoButton onClick={handleKakaoLogin}>카카오로 로그인</KakaoButton>
           <GitHubButton>깃허브로 로그인</GitHubButton>
+          <GoogleButton onClick={handleGoogleLogin}>구글로 로그인</GoogleButton>
           <SkyButton onClick={handleJoin}>복만이 가입하기</SkyButton>
+
+          {onNickNameSetting ? (
+            <NickNameSetting googleEmail={googleEmail} googleUid={googleUid} />
+          ) : null}
         </div>
       </section>
     </div>
