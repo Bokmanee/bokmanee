@@ -5,10 +5,10 @@ import BokClick from '../atoms/BokClick';
 import Board from '../atoms/Board';
 import Header from '../components/Header';
 import { WhButton, SkyButton } from '../atoms/Button';
-import "../sass/pages/_userBoard.scss";
 
 const UserBoard = ({ userInfo }: any) => {
-  console.log(userInfo !== null && userInfo.uid)
+  // console.log(userInfo !== null && userInfo.uid)
+  // console.log(userInfo);
 
   const navigate = useNavigate();
   const linkToChooseBokPouch = () => {
@@ -17,6 +17,7 @@ const UserBoard = ({ userInfo }: any) => {
   const linkToHome = () => {
     navigate('/login')
   }
+
   return (
     <>
       <Header

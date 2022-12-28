@@ -27,7 +27,7 @@ const RegisterCompletion = ({ userInfo }: any) => {
           children='내 복주머니 저장소 만들기'
           onClick={linkToHome} />
       </div>
-      <p>{location.state.message}</p>
+      {/* <p>{location.state.message}</p> */}
     </>
   )
 }
