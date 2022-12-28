@@ -23,12 +23,11 @@ import {
 import NickNameSetting from "./NickNameSetting";
 
 const Login = ({ userInfo }: any) => {
+  const navigate = useNavigate();
   //카카오정보
   const [onNickNameSetting, setOnNickNameSetting] =
     React.useState<boolean>(false);
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_REST_API_KEY}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&response_type=code `;
-
-  const [userGoogleData, setUserGoogleData] = useState("");
 
   const [googleEmail, setGoogleEmail] = useState<string | null>("");
   const [googleUid, setGoogleUid] = useState<string | null>("");
@@ -40,26 +39,37 @@ const Login = ({ userInfo }: any) => {
 
   const handleGoogleLogin = () => {
     // handleGoogle();
+    //파이어베이스로 구글 로그인
     const provider = new GoogleAuthProvider(); // provider를 구글로 설정
     signInWithPopup(appAuth, provider) // popup을 이용한 signup
       .then((data) => {
-        // setUserGoogleData(data.user); // user data 설정
         console.log(data); // console로 들어온 데이터 표시
         setGoogleEmail(data.user.email);
         setGoogleUid(data.user.uid);
-        <NickNameSetting googleEmail={googleEmail} googleUid={googleUid} />;
-        // window.location.href = "/nicknamesetting";
+        // LinkToNick();
       })
       .catch((err) => {
         console.log(err);
       });
+
+    setOnNickNameSetting(true);
   };
+  if (googleEmail !== "" && googleUid !== "") {
+    navigate("/nicknamesetting", {
+      state: { googleEmail, googleUid },
+    });
+  }
+
+  // const LinkToNick = () => {
+  //   navigate("/nicknamesetting", {
+  //     state: { googleEmail, googleUid },
+  //   });
+  // };
 
   const handleJoin = () => {
     window.location.href = "/join";
     setOnNickNameSetting(false);
   };
-  // console.log(onNickNameSetting);
 
   //혜빈
   // const [email, onChangeEmail] = useInput("");
@@ -68,17 +78,17 @@ const Login = ({ userInfo }: any) => {
   const [passwordError, setPasswordError] = useState(false);
 
   // 위정
-  const navigate = useNavigate();
+
   const location = useLocation();
   const loginStatus = location.state;
-  console.log(loginStatus);
-  console.log(userInfo);
+  // console.log(loginStatus);
+  // console.log(userInfo);
 
   const [inputs, setInputs] = useState<UserInputInterface>({
     email: "",
     password: "",
   });
-  console.log(inputs);
+  // console.log(inputs);
 
   const { email, password } = inputs;
 
@@ -166,6 +176,10 @@ const Login = ({ userInfo }: any) => {
           <GitHubButton>깃허브로 로그인</GitHubButton>
           <GoogleButton onClick={handleGoogleLogin}>구글로 로그인</GoogleButton>
           <SkyButton onClick={handleJoin}>복만이 가입하기</SkyButton>
+
+          {onNickNameSetting ? (
+            <NickNameSetting googleEmail={googleEmail} googleUid={googleUid} />
+          ) : null}
         </div>
       </section>
     </div>

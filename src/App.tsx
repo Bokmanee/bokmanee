@@ -60,7 +60,7 @@ function App() {
           <Route path="/login" element={<Login userInfo={userInfo} />} />
           <Route path="/kakaoLogin" element={<KaKaoLogin />} />
           <Route path="/join" element={<Join />} />
-          {/* <Route path="/nicknamesetting" element={<NickNameSetting />} /> */}
+          <Route path="/nicknamesetting" element={<NickNameSetting />} />
           <Route path="/findMyPassword" element={<FindPassword />} />
           <Route path="/:accountname/myboard" element={<MyBoard />} />
           <Route path="/:accountname/userBoard" element={<UserBoard />} />
