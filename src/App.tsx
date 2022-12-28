@@ -6,7 +6,7 @@ import ChooseBok from "../src/pages/ChooseBok";
 import FindPassword from "../src/pages/FindPassword";
 import Join from "../src/pages/Join";
 import Login from "../src/pages/Login";
-import LoginCheck from './pages/LoginCheck';
+import LoginCheck from "./pages/LoginCheck";
 import MyBoard from "../src/pages/MyBoard";
 import RegisterBok from "../src/pages/RegisterBok";
 import RegisterCompletion from "./pages/RegisterCompletion";
@@ -21,6 +21,7 @@ import { appAuth, appFireStore } from "./firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { UserInterface } from "../src/pages/Join";
+import Error404 from "./pages/Error404";
 
 function App() {
   const [userInfo, setUserInfo] = useState<UserInterface | any>("");
@@ -46,7 +47,7 @@ function App() {
   }, []);
 
   // 유저 uid 토큰으로 사용
-  localStorage.setItem('token', userInfo.uid)
+  localStorage.setItem("token", userInfo.uid);
   // console.log(userInfo);
 
   return (
@@ -76,6 +77,7 @@ function App() {
           />
           <Route path="/receivedMessage_from/:who" element={<ReceivedMsg />} />
           <Route path="/tutorial" element={<Tutorial />} />
+          <Route path="/*" element={<Error404 />} />
         </Routes>
       </AllLayout>
     </BrowserRouter>
