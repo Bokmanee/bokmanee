@@ -72,9 +72,6 @@ const Login = () => {
     setOnNickNameSetting(false);
   };
 
-  //혜빈
-  // const [email, onChangeEmail] = useInput("");
-  // const [password, onChangePassword] = useInput("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
@@ -89,32 +86,30 @@ const Login = () => {
   });
   const { email, password } = inputs;
 
-  const emailCheck = (e: any) => {
+  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     let regex =
       /^[0-9a-zA-Z]([-_.0-9a-zA-Z])*@[0-9a-zA-Z]([-_.0-9a-zA-Z])*.([a-zA-Z])*/;
-
     if (!e.target.value || regex.test(e.target.value)) setEmailError(false);
     else setEmailError(true);
-    setInputs(e.target.value);
+    setInputs({ ...inputs, ["email"]: e.target.value });
     return regex.test(email);
   };
 
-  const onChangePassword = (e: any) => {
-    //setPassword(e.target.value);
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     //숫자와 문자 포함 형태의 6~12자리
     const regex = /^[A-Za-z0-9]{6,12}$/;
     if (!e.target.value || regex.test(e.target.value)) {
       setPasswordError(false);
     } else setPasswordError(true);
-    setInputs(e.target.value);
+    setInputs({ ...inputs, ["password"]: e.target.value });
     return regex.test(password);
   };
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.currentTarget;
-    setInputs({ ...inputs, [name]: value });
-    console.log({ ...inputs, [name]: value });
-  };
+  // const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  //   const { name, value } = e.currentTarget;
+  //   setInputs({ ...inputs, [name]: value });
+  //   console.log({ ...inputs, [name]: value });
+  // };
 
   const onSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -122,7 +117,7 @@ const Login = () => {
       .then((userCredential: any) => {
         const user = userCredential.user;
         console.log(user);
-        navigate(`/main`)
+        navigate(`/main`);
       })
       .catch((error) => {
         console.log(error);
@@ -143,7 +138,7 @@ const Login = () => {
             placeholder="이메일"
             name="email"
             value={email}
-            onChange={onChange}
+            onChange={onChangeEmail}
           />
           {emailError && (
             <strong className="txt-error">이메일 형식이 아닙니다.</strong>
@@ -154,7 +149,7 @@ const Login = () => {
             placeholder="비밀번호"
             name="password"
             value={password}
-            onChange={onChange}
+            onChange={onChangePassword}
           />
           {passwordError && (
             <strong className="txt-error">
