@@ -21,8 +21,8 @@ const Login = ({ userInfo }: any) => {
   //카카오정보
   const [onNickNameSetting, setOnNickNameSetting] =
     React.useState<boolean>(false);
-  const REST_API_KEY = "78b882d931f2a2e937f9edd73d866867";
-  const REDIRECT_URI = "http://localhost:3000/kakaoLogin";
+  const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
+  const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI;
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code `;
   const [userGoogleData, setUserGoogleData] = useState("");
 
@@ -96,7 +96,7 @@ const Login = ({ userInfo }: any) => {
         const user = userCredential.user;
         console.log(user);
         console.log(loginStatus);
-        navigate(`/${userInfo.email.split('@')[0]}/message_board`);
+        navigate(`/${userInfo.email.split("@")[0]}/message_board`);
       })
       .catch((error) => {
         console.log(error);
