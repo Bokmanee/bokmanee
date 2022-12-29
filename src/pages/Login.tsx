@@ -61,12 +61,6 @@ const Login = () => {
     });
   }
 
-  // const LinkToNick = () => {
-  //   navigate("/nicknamesetting", {
-  //     state: { googleEmail, googleUid },
-  //   });
-  // };
-
   const handleJoin = () => {
     window.location.href = "/join";
     setOnNickNameSetting(false);
@@ -167,10 +161,6 @@ const Login = () => {
           <GitHubButton>깃허브로 로그인</GitHubButton>
           <GoogleButton onClick={handleGoogleLogin}>구글로 로그인</GoogleButton>
           <SkyButton onClick={handleJoin}>복만이 가입하기</SkyButton>
-
-          {onNickNameSetting ? (
-            <NickNameSetting googleEmail={googleEmail} googleUid={googleUid} />
-          ) : null}
         </div>
       </section>
     </div>

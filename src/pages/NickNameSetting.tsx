@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import Backspace from "../atoms/Backspace";
 import BokClick from "../atoms/BokClick";
@@ -11,41 +11,40 @@ import { appAuth, appFireStore } from "../firebase/config";
 import { UserInputInterface, UserInterface } from "./Join";
 
 interface Googleinfo {
-  googleEmail?: string | null;
-  googleUid?: string | null;
+  email?: string | null;
+  uid?: string | null;
   displayName?: string;
 }
 
 // interface Google
 
-function NickNameSetting({ googleEmail, googleUid }: Googleinfo) {
+function NickNameSetting() {
   const [onSubmit, setOnSubmit] = React.useState<boolean>(false);
   const [googleDisplayName, setGoogleDisplayName] = useState<string>("");
   const [GoogleJoinInfo, setGoogleJoinInfo] = useState<Googleinfo>({
     displayName: "",
   });
-
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.state);
   const data = location.state;
 
-  const handleNickName = (e: any) => {
-    setGoogleDisplayName(e.target.value);
-  };
+  const { displayName } = GoogleJoinInfo;
+
+  const [googleLoginData, setGoogleLoginData] = React.useState<Googleinfo>({
+    uid: "",
+    email: "",
+    displayName: "",
+  });
+
   const onSubmitModal = () => {
     setOnSubmit(true);
-    // navigate("/myboard");
     localStorage.setItem("nickName", googleDisplayName);
   };
-
-  const { displayName } = GoogleJoinInfo;
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
     setGoogleJoinInfo({ ...GoogleJoinInfo, [name]: value });
   };
-  console.log(GoogleJoinInfo);
 
   const onClick = async () => {
     if (displayName === "") {
@@ -53,14 +52,27 @@ function NickNameSetting({ googleEmail, googleUid }: Googleinfo) {
       return false;
     } else {
       setOnSubmit(true);
+      setGoogleLoginData({
+        uid: data.googleUid,
+        email: data.googleEmail,
+        displayName: displayName,
+      });
     }
-    navigate(`/${data.googleEmail.split("@")[0]}/message_board`);
+
     await addDoc(collection(appFireStore, "users"), {
       displayName: displayName,
       email: data.googleEmail,
       uid: data.googleUid,
     });
   };
+
+  useEffect(() => {
+    if (googleLoginData.displayName !== "") {
+      navigate(`/${data.googleEmail.split("@")[0]}/message_board`, {
+        state: googleLoginData,
+      });
+    }
+  }, [googleLoginData]);
 
   return (
     <section className="join-wrap">
