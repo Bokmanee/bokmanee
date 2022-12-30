@@ -7,6 +7,10 @@
   font-family: 'PyeongChangPeace-Light';
   text-align: center;
   // font-size: ;
+  form {
+    width: 266px;
+    margin: 0 auto;
+  }
   .txt-happy{
     padding-bottom: 15px;
   }
@@ -26,13 +30,22 @@
     font-size: 14px;
     border-bottom: 1px solid $wh-color;
     padding-bottom: 9px;
-    margin-bottom: 24px;
     &::placeholder {
       color: #E0E0E0;
     }
   }
+
+  .errorMessage {
+    font-family: 'PyeongChang';
+    font-size: 12px;
+    color: $error-color;
+    text-align: left;
+    margin: 11px 0;
+  }
+  
   button {
     font-family: 'PyeongChang-Regular';
+    margin-top: 21px;
   }
 
 }

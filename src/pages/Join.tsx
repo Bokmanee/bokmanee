@@ -21,11 +21,25 @@ export interface UserInputInterface {
   passwordCheck?: string;
 }
 
+interface ErrorMsgInterface {
+  emailError: boolean;
+  passwordError: boolean;
+  passwordCheckError: boolean;
+}
+
 const Join = () => {
   const navigate = useNavigate();
   const linkToLogin = () => {
     navigate("/login");
   };
+
+  const [errorMsgs, setErrorMsgs] = useState<ErrorMsgInterface>({
+    emailError: false,
+    passwordError: false,
+    passwordCheckError: false,
+  });
+
+  const { emailError, passwordError, passwordCheckError } = errorMsgs;
 
   const [onSubmit, setOnSubmit] = React.useState<boolean>(false);
 
@@ -81,6 +95,7 @@ const Join = () => {
           value={displayName}
           onChange={onChange}
         />
+        <p className="errorMessage hidden">닉네임은 자유룝게 작성가능합니다.</p>
         <input
           type="email"
           placeholder="이메일"
@@ -89,6 +104,12 @@ const Join = () => {
           value={email}
           onChange={onChange}
         />
+        {emailError ? (
+          <p className="errorMessage">* 이메일 형식이 아닙니다.</p>
+        ) : (
+          <p className="errorMessage hidden">* 이메일 형식이 아닙니다.</p>
+        )}
+
         <input
           type="password"
           placeholder="비밀번호"
@@ -97,6 +118,16 @@ const Join = () => {
           value={password}
           onChange={onChange}
         />
+        {passwordError ? (
+          <p className="errorMessage">
+            * 숫자와 문자 포함 형태의 6~12자리입니다.
+          </p>
+        ) : (
+          <p className="errorMessage hidden">
+            * 숫자와 문자 포함 형태의 6~12자리입니다.
+          </p>
+        )}
+
         <input
           type="password"
           placeholder="비밀번호 확인"
@@ -105,6 +136,11 @@ const Join = () => {
           value={passwordCheck}
           onChange={onChange}
         />
+        {passwordCheckError ? (
+          <p className="errorMessage">* 비밀번호가 일치하지 않습니다.</p>
+        ) : (
+          <p className="errorMessage hidden">* 비밀번호가 일치하지 않습니다.</p>
+        )}
         <WhButton type="submit" onClick={onSubmitModal}>
           가입하기
         </WhButton>
