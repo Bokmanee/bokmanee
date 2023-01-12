@@ -140,8 +140,10 @@ const Login = () => {
             value={email}
             onChange={onChangeEmail}
           />
-          {emailError && (
+          {emailError ? (
             <strong className="txt-error">이메일 형식이 아닙니다.</strong>
+          ) : (
+            <strong className="txt-nonerror">이메일 형식 맞습니다.</strong>
           )}
           <Input
             type="password"
@@ -151,10 +153,12 @@ const Login = () => {
             value={password}
             onChange={onChangePassword}
           />
-          {passwordError && (
+          {passwordError ? (
             <strong className="txt-error">
               숫자와 문자 포함 형태의 6~12자리입니다.
             </strong>
+          ) : (
+            <strong className="txt-nonerror">비밀번호 형식 맞습니다.</strong>
           )}
           <WhButton type="submit">로그인</WhButton>
         </form>

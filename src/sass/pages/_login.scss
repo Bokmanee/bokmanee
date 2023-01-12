@@ -24,7 +24,16 @@
       display: block;
       font-size: 12px;
       color: #EB1212;
-      margin: 0 0 13px;
+      margin: 0 0 12px;
+      
+    }
+    @at-root .txt-nonerror{
+      font-family: 'PyeongChang';
+      font-weight: 300;
+      display: block;
+      font-size: 12px;
+      margin: 0 0 12px;
+      visibility: hidden;
     }
     .link-passfind{
    font-family: 'PyeongChang';

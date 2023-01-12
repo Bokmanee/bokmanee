@@ -10,10 +10,7 @@ const BokClick = () => {
       }}
       aria-label="튜토리얼 버튼"
     >
-      <img
-        src={process.env.PUBLIC_URL + "assets/images/icon-rabbit-click.svg"}
-        alt="토끼이미지"
-      />
+      <img src={"../../assets/images/icon-rabbit-click.svg"} alt="토끼이미지" />
     </button>
   );
 };
