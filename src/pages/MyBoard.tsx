@@ -39,8 +39,6 @@ const MyBoard = () => {
           ...doc.data(),
         };
       });
-      console.log("제발");
-      console.log(arr);
       // @ts-ignore
       setMessageList(arr);
     });
@@ -54,8 +52,6 @@ const MyBoard = () => {
   console.log(location.state);
 
   const userToken = localStorage.getItem("token");
-
-  console.log(JSON.stringify(messageList));
 
   return (
     <>
